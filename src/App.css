@@ -1,0 +1,151 @@
+:root {
+  --black: #121111d9;
+  --gradient-behind: linear-gradient(
+    90deg,
+    rgba(48, 16, 255, 1) 0%,
+    rgba(100, 115, 255, 1) 100%
+  );;
+  --gradient-purple: linear-gradient(
+    90deg,
+    rgba(93, 12, 255, 1) 0%,
+    rgba(155, 0, 250, 1) 100%
+  );
+  --gradient-blue: linear-gradient(
+    90deg,
+    rgba(20, 159, 255, 1) 0%,
+    rgba(17, 122, 255, 1) 100%
+  );
+  --gradient-orange: linear-gradient(
+    90deg,
+    rgba(255, 118, 20, 1) 0%,
+    rgba(255, 84, 17, 1) 100%
+  );
+  --gradient-pink: linear-gradient(
+    90deg,
+    rgba(255, 12, 241, 1) 0%,
+    rgba(250, 0, 135, 1) 100%
+  );
+  --text-color: whitesmoke;
+}
+body {
+  background: var(--gradient-behind);
+}
+.App {
+  box-sizing: border-box;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-color);
+}
+
+.container {
+  width: 520px;
+  height: 600px;
+  background-color: var(--black);
+  border-radius: 15px;
+  text-align: center;
+}
+
+.heading {
+  margin: 30px 30px;
+}
+
+.form-input {
+  margin: 30px auto;
+}
+input {
+  padding: 14px 32px 14px 16px;
+  border-radius: 4px 0 0 4px;
+  border: 2px solid #5d0cff;
+  outline: none;
+  background: transparent;
+  color: #fff;
+}
+
+input::placeholder {
+  color: #e2e2e2;
+}
+
+input.largerCheckbox {
+  width: 20px;
+  height: 20px;
+}
+button {
+  padding: 16px;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  outline: none;
+  background: var(--gradient-purple);
+  color: #fff;
+  text-transform: capitalize;
+}
+
+.todoList {
+  margin: 35px auto;
+  height: 400px;
+  overflow: scroll;
+}
+.todoList::-webkit-scrollbar {
+  display: none;
+}
+.job-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 4px auto;
+  color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  width: 80%;
+}
+.job-color {  
+  background: var(--gradient-blue);
+}
+.job-color:nth-child(4n + 1) {
+  background: var(--gradient-orange);
+}
+
+.job-color:nth-child(4n + 2) {
+  background: var(--gradient-purple);
+}
+
+.job-color:nth-child(4n + 3) {
+  background: var(--gradient-pink);
+}
+
+.icons {
+  width: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.react-icon {
+  cursor: pointer;
+}
+
+.complete {
+  position: relative;
+  background: green;
+}
+
+.complete::after {
+  content: "";
+  opacity: .5;
+  border: .8px solid white; 
+  width: 0px;
+  position: absolute;
+  bottom: 50%;
+  transform: translateY(-50%);
+  animation: showUp .5s forwards;
+}
+
+@keyframes showUp {
+  from {
+    width: 0;
+  }
+  to {
+    width: 300px;
+  }
+}
