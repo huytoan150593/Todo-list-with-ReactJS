@@ -1,17 +1,20 @@
 import React from 'react';
 import {useState} from 'react';
-import { Todo } from './TodoList';
+import { Todo } from './Todo';
 
 export const Form = ({type}) => {
+
     const [job, setJob] = useState('');
-    const [jobs, setJobs] = useState([]);
+    const [jobs, setJobs] = useState(JSON.parse(localStorage.getItem("TODOLIST")) || []);
     const [edit, setEdit] = useState();
     const [show, setShow] = useState(true)
     
+    localStorage.setItem("TODOLIST", JSON.stringify(jobs));
+
     const handleAdd = () => {
         setJobs(prev => [...prev,job]);
         setJob('');
-        const lastChild = document.querySelector(".todoList").lastChild;
+        let lastChild = document.querySelector(".todoList").lastChild;
         if(lastChild){
             lastChild.scrollIntoView({
                 behavior: "smooth",
@@ -27,16 +30,17 @@ export const Form = ({type}) => {
             handleSave();
         }
     }
-    const handleCheck = (e) => {
-        e.target.classList.toggle("complete");
-        e.target.classList.toggle("job-color");
-    }
 
-    const handleDelete = (idx) => {
+    const handleDelete = (e, idx) => {
+        // const row = e.target.closest(".job-row");
+        // const box = e.target.closest(".icons").previousSibling.previousSibling
         const newJobs = jobs.filter(job => job !== jobs[idx]);
         setJobs(newJobs);
     }
-
+    const handleCheck = (e) => {
+        e.target.closest("div").classList.toggle("complete");
+        e.target.closest("div").classList.toggle("job-color");
+  }
     const handleEdit = (idx) => {
         setShow(!show);
         const editJob = jobs[idx];
@@ -49,6 +53,7 @@ export const Form = ({type}) => {
         setJobs([...jobs])
         setShow(!show)
         setJob(""); 
+        localStorage.setItem("TODOLIST", JSON.stringify(jobs));
     }
   return (
     <div className="form-input">
@@ -64,7 +69,7 @@ export const Form = ({type}) => {
                         <Todo   key={idx}
                                 job={item}
                                 handleCheck={handleCheck}
-                                handleDelete={() => handleDelete(idx)}
+                                handleDelete={(e) => handleDelete(e, idx)}
                                 handleEdit={() => handleEdit(idx)}
                         />
                         

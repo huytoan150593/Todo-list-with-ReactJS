@@ -67,10 +67,6 @@ input::placeholder {
   color: #e2e2e2;
 }
 
-input.largerCheckbox {
-  width: 20px;
-  height: 20px;
-}
 button {
   padding: 16px;
   border: none;
@@ -137,7 +133,7 @@ button {
   width: 0px;
   position: absolute;
   bottom: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-50%) translateX(20px);
   animation: showUp .5s forwards;
 }
 
